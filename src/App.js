@@ -4,11 +4,12 @@ const lowerCase = "abcdefghijklmnopqrstuvwxyz";
 const upperCas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbers = "0123456789";
 const symbols = "!@@#$%^&*()}{][;:,.></?";
-let passwordLenght = 6;
 let inString = "";
 
 function App() {
   let [password, setPassword] = useState("");
+  let [length, setLength] = useState("");
+
   const [lowerCaseAdded, setLowerCaseAdded] = useState(false);
   const [upperCaseAdded, setUpperCasAdded] = useState(false);
   const [numAdded, setnumAdded] = useState(false);
@@ -23,16 +24,36 @@ function App() {
   generateSmallCase(symbols, symbolsAdded);
   const generatePassword = () => {
     if (isFinished) {
-      for (let i = 0; i < passwordLenght; i++) {
-        password += inString[Math.floor(Math.random() * inString.length)];
+      if (length >= 6) {
+        for (let i = 0; i < length; i++) {
+          password += inString[Math.floor(Math.random() * inString.length)];
+        }
+      } else {
+        alert("The password must atleast have 6 digits.");
       }
     }
   };
   generatePassword();
 
+  const resetPassword = () => {
+    setPassword("");
+    setLowerCaseAdded(false);
+    setUpperCasAdded(false);
+    setnumAdded(false);
+    setSymbolsAdded(false);
+    setIsFinished(false);
+    setLength("");
+  };
+
   return (
     <div>
       <h1 className="header">this is the random password generator</h1>
+      <input
+        type="number"
+        placeholder="Please input the length "
+        value={length}
+        onChange={(e) => setLength(e.target.value)}
+      />
       <input
         type="text"
         value={password}
@@ -74,7 +95,7 @@ function App() {
       </div>
       <div>
         <button onClick={() => setIsFinished(true)}>generate</button>
-        <button>reset</button>
+        <button onClick={resetPassword}>reset</button>
       </div>
     </div>
   );
