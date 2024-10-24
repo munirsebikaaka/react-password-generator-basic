@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const lowerCase = "abcdefghijklmnopqrstuvwxyz";
 const upperCas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -41,10 +41,21 @@ function App() {
     setIsFinished(false);
     setLength("");
   };
+  const useAddFocus = (input) => {
+    useEffect(
+      function () {
+        const inputEl = input.current;
+        inputEl.focus();
+      },
+      [input]
+    );
+  };
+  const input = useRef(null);
+  useAddFocus(input);
 
   return (
     <div>
-      <h1 className="header">this is the random password generator</h1>
+      <h1 className="header">Random password generator</h1>
 
       <div>
         <h5
@@ -65,7 +76,7 @@ function App() {
 
         <input
           type="number"
-          placeholder="Please input the length "
+          ref={input}
           value={length}
           onChange={(e) => setLength(e.target.value)}
         />
@@ -113,7 +124,7 @@ function App() {
         </h1>
       </div>
       <div>
-        <button onClick={() => setIsFinished(true)}>generate</button>
+        <button onClick={() => setIsFinished((p) => !p)}>generate</button>
         <button onClick={resetPassword}>reset</button>
       </div>
     </div>
