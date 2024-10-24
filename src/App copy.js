@@ -9,6 +9,7 @@ let inString = "";
 function App() {
   let [password, setPassword] = useState("");
   let [length, setLength] = useState("");
+
   const [lowerCaseAdded, setLowerCaseAdded] = useState(false);
   const [upperCaseAdded, setUpperCasAdded] = useState(false);
   const [numAdded, setnumAdded] = useState(false);
@@ -23,10 +24,13 @@ function App() {
   generateSmallCase(symbols, symbolsAdded);
   const generatePassword = () => {
     if (isFinished) {
+      if (!length) return alert("Please select the length of the password");
       if (length >= 6) {
         for (let i = 0; i < length; i++) {
           password += inString[Math.floor(Math.random() * inString.length)];
         }
+      } else {
+        alert("The password must atleast have 6 digits.");
       }
     }
   };
@@ -45,39 +49,17 @@ function App() {
   return (
     <div>
       <h1 className="header">this is the random password generator</h1>
-
-      <div>
-        <h5
-          className={
-            (isFinished && !length) || (isFinished && length < 6)
-              ? "wrong"
-              : "collect"
-          }
-        >
-          {!isFinished
-            ? "Select a range for password."
-            : !length
-            ? "Please input password range!"
-            : length < 6
-            ? "Password must atleast have 6 digits!"
-            : " Select a range for password."}
-        </h5>
-
-        <input
-          type="number"
-          placeholder="Please input the length "
-          value={length}
-          onChange={(e) => setLength(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button>copy</button>
-      </div>
+      <input
+        type="number"
+        placeholder="Please input the length "
+        value={length}
+        onChange={(e) => setLength(e.target.value)}
+      />
+      <input
+        type="text"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <div>
         <h1 className="results">
           <input
