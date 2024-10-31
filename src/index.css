@@ -5,3 +5,26 @@
 .collect {
   margin-bottom: -1px;
 }
+
+.barMain {
+  display: flex;
+  gap: 5px;
+}
+.barMain span {
+  width: 5px;
+  height: 15px;
+  border: 1px solid red;
+}
+
+.tooWeak {
+  background-color: red;
+}
+.weak {
+  background-color: #ff4517;
+}
+.medium {
+  background-color: yellowgreen;
+}
+.strong {
+  background-color: #3dff8e;
+}

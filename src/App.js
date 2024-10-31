@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const lowerCase = "abcdefghijklmnopqrstuvwxyz";
 const upperCas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -8,15 +8,18 @@ let inString = "";
 
 function App() {
   let [password, setPassword] = useState("");
-  let [length, setLength] = useState("");
+  let [length, setLength] = useState(0);
   const [lowerCaseAdded, setLowerCaseAdded] = useState(false);
   const [upperCaseAdded, setUpperCasAdded] = useState(false);
   const [numAdded, setnumAdded] = useState(false);
   const [symbolsAdded, setSymbolsAdded] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const [copy, setCopy] = useState(false);
+
   const generateSmallCase = (string, condition) => {
     if (condition) inString += string;
   };
+
   generateSmallCase(lowerCase, lowerCaseAdded);
   generateSmallCase(upperCas, upperCaseAdded);
   generateSmallCase(numbers, numAdded);
@@ -41,17 +44,18 @@ function App() {
     setIsFinished(false);
     setLength("");
   };
-  const useAddFocus = (input) => {
+  const useCopyPassword = (input) => {
     useEffect(
       function () {
         const inputEl = input.current;
-        inputEl.focus();
+        if (copy) inputEl.select();
+        document.execCommand("copy");
       },
       [input]
     );
   };
   const input = useRef(null);
-  useAddFocus(input);
+  useCopyPassword(input);
 
   return (
     <div>
@@ -66,28 +70,33 @@ function App() {
           }
         >
           {!isFinished
-            ? "Select a range for password."
+            ? "Character length."
             : !length
-            ? "Please input password range!"
+            ? "Please select length!"
             : length < 6
-            ? "Password must atleast have 6 digits!"
-            : " Select a range for password."}
+            ? "Length must atleast have 6 digits!"
+            : " Character length."}
         </h5>
 
-        <input
-          type="number"
-          ref={input}
-          value={length}
-          onChange={(e) => setLength(e.target.value)}
-        />
+        <div>
+          <input
+            type="range"
+            min="0"
+            max="15"
+            value={length}
+            onChange={(e) => setLength(e.target.value)}
+          />
+          <span>{length}</span>
+        </div>
       </div>
       <div>
         <input
           type="text"
+          ref={input}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button>copy</button>
+        <button onClick={() => setCopy(true)}>copy</button>
       </div>
       <div>
         <h1 className="results">
@@ -122,6 +131,58 @@ function App() {
           />
           $#&!
         </h1>
+      </div>
+      <div>
+        <p>strength</p>
+        <p>
+          {length <= 6
+            ? "too weak"
+            : length <= 9
+            ? "weak"
+            : length <= 12
+            ? "medium"
+            : length > 12
+            ? "strong"
+            : ""}
+        </p>
+        <p className="barMain">
+          <span
+            className={
+              password.length > 5 && length <= 6
+                ? "tooWeak"
+                : length <= 9
+                ? "weak"
+                : length <= 12
+                ? "medium"
+                : length > 12
+                ? "strong"
+                : ""
+            }
+          ></span>
+          <span
+            className={
+              password.length > 5 && length <= 9
+                ? "weak"
+                : length <= 12
+                ? "medium"
+                : length > 12
+                ? "strong"
+                : ""
+            }
+          ></span>
+          <span
+            className={
+              password.length > 5 && length <= 12
+                ? "medium"
+                : length > 12
+                ? "strong"
+                : ""
+            }
+          ></span>
+          <span
+            className={password.length > 5 && length > 12 ? "strong" : ""}
+          ></span>
+        </p>
       </div>
       <div>
         <button onClick={() => setIsFinished((p) => !p)}>generate</button>
