@@ -42,24 +42,24 @@ function App() {
     setnumAdded(false);
     setSymbolsAdded(false);
     setIsFinished(false);
-    setLength("");
+    setLength(0);
   };
-  const useCopyPassword = (input) => {
-    useEffect(
-      function () {
-        const inputEl = input.current;
-        if (copy) inputEl.select();
-        document.execCommand("copy");
-      },
-      [input]
-    );
-  };
-  const input = useRef(null);
-  useCopyPassword(input);
+  // const useCopyPassword = (input) => {
+  //   useEffect(
+  //     function () {
+  //       const inputEl = input.current;
+  //       if (copy) inputEl.select();
+  //       document.execCommand("copy");
+  //     },
+  //     [input]
+  //   );
+  // };
+  // const input = useRef(null);
+  // useCopyPassword(input);
 
   return (
-    <div>
-      <h1 className="header">Random password generator</h1>
+    <div className="app">
+      <h1 className="header"> password generator</h1>
 
       <div>
         <h5
@@ -92,7 +92,7 @@ function App() {
       <div>
         <input
           type="text"
-          ref={input}
+          // ref={input}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -132,7 +132,7 @@ function App() {
           $#&!
         </h1>
       </div>
-      <div>
+      <div className="strength">
         <p>strength</p>
         <p>
           {length <= 6
@@ -148,40 +148,44 @@ function App() {
         <p className="barMain">
           <span
             className={
-              password.length > 5 && length <= 6
+              length < 6
+                ? ""
+                : length <= 6
                 ? "tooWeak"
-                : length <= 9
+                : length <= 8
                 ? "weak"
-                : length <= 12
+                : length <= 11
                 ? "medium"
-                : length > 12
+                : length >= 13
                 ? "strong"
                 : ""
             }
           ></span>
           <span
             className={
-              password.length > 5 && length <= 9
-                ? "weak"
-                : length <= 12
-                ? "medium"
-                : length > 12
-                ? "strong"
+              length > 7
+                ? length <= 8
+                  ? "weak"
+                  : length <= 11
+                  ? "medium"
+                  : length >= 13
+                  ? "strong"
+                  : ""
                 : ""
             }
           ></span>
           <span
             className={
-              password.length > 5 && length <= 12
-                ? "medium"
-                : length > 12
-                ? "strong"
+              length > 8
+                ? length <= 11
+                  ? "medium"
+                  : length >= 13
+                  ? "strong"
+                  : ""
                 : ""
             }
           ></span>
-          <span
-            className={password.length > 5 && length > 12 ? "strong" : ""}
-          ></span>
+          <span className={length >= 13 ? "strong" : ""}></span>
         </p>
       </div>
       <div>

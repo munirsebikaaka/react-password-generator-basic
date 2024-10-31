@@ -10,6 +10,15 @@
   display: flex;
   gap: 5px;
 }
+.strength {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app {
+  width: 300px;
+  margin: 0 auto;
+}
 .barMain span {
   width: 5px;
   height: 15px;
