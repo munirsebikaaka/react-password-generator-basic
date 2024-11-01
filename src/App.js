@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 const lowerCase = "abcdefghijklmnopqrstuvwxyz";
 const upperCas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -7,14 +7,13 @@ const symbols = "!@@#$%^&*()}{][;:,.></?";
 let inString = "";
 
 function App() {
-  let [password, setPassword] = useState("");
   let [length, setLength] = useState(0);
-  const [lowerCaseAdded, setLowerCaseAdded] = useState(false);
-  const [upperCaseAdded, setUpperCasAdded] = useState(false);
+  let [password, setPassword] = useState("");
   const [numAdded, setnumAdded] = useState(false);
-  const [symbolsAdded, setSymbolsAdded] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
-  const [copy, setCopy] = useState(false);
+  const [symbolsAdded, setSymbolsAdded] = useState(false);
+  const [upperCaseAdded, setUpperCasAdded] = useState(false);
+  const [lowerCaseAdded, setLowerCaseAdded] = useState(false);
 
   const generateSmallCase = (string, condition) => {
     if (condition) inString += string;
@@ -44,18 +43,6 @@ function App() {
     setIsFinished(false);
     setLength(0);
   };
-  // const useCopyPassword = (input) => {
-  //   useEffect(
-  //     function () {
-  //       const inputEl = input.current;
-  //       if (copy) inputEl.select();
-  //       document.execCommand("copy");
-  //     },
-  //     [input]
-  //   );
-  // };
-  // const input = useRef(null);
-  // useCopyPassword(input);
 
   return (
     <div className="app">
@@ -92,11 +79,10 @@ function App() {
       <div>
         <input
           type="text"
-          // ref={input}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={() => setCopy(true)}>copy</button>
+        <button>copy</button>
       </div>
       <div>
         <h1 className="results">
@@ -137,7 +123,7 @@ function App() {
         <p>
           {length <= 6
             ? "too weak"
-            : length <= 9
+            : length <= 8
             ? "weak"
             : length <= 12
             ? "medium"
@@ -154,9 +140,9 @@ function App() {
                 ? "tooWeak"
                 : length <= 8
                 ? "weak"
-                : length <= 11
+                : length <= 12
                 ? "medium"
-                : length >= 13
+                : length > 12
                 ? "strong"
                 : ""
             }
@@ -166,9 +152,9 @@ function App() {
               length > 7
                 ? length <= 8
                   ? "weak"
-                  : length <= 11
+                  : length <= 12
                   ? "medium"
-                  : length >= 13
+                  : length > 12
                   ? "strong"
                   : ""
                 : ""
@@ -177,15 +163,15 @@ function App() {
           <span
             className={
               length > 8
-                ? length <= 11
+                ? length <= 12
                   ? "medium"
-                  : length >= 13
+                  : length > 12
                   ? "strong"
                   : ""
                 : ""
             }
           ></span>
-          <span className={length >= 13 ? "strong" : ""}></span>
+          <span className={length > 12 ? "strong" : ""}></span>
         </p>
       </div>
       <div>
