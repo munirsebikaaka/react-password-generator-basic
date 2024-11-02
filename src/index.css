@@ -1,6 +1,16 @@
+body {
+  background-color: #131218;
+}
 .wrong {
   color: red;
   margin-bottom: -1px;
+}
+.header {
+  color: #807e8c;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  text-align: center;
+  font-family: serif;
 }
 .collect {
   margin-bottom: -1px;
@@ -14,26 +24,119 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 30px;
+  font-family: serif;
+  background-color: #18171f;
+  padding: 0 10px;
+  font-size: 0.8rem;
+}
+.strength div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .app {
-  width: 300px;
-  margin: 0 auto;
-}
-.barMain span {
-  width: 5px;
-  height: 15px;
-  border: 1px solid red;
+  width: 280px;
+  margin: 30px auto;
 }
 
+.empty {
+  width: 5px;
+  height: 20px;
+  border: 2px solid #e6e5eb;
+}
 .tooWeak {
-  background-color: red;
+  width: 5px;
+  height: 20px;
+  background-color: #f44a49;
+  border: 1px solid #f44a49;
 }
 .weak {
-  background-color: #ff4517;
+  width: 5px;
+  height: 20px;
+  background-color: #fb7c58;
+  border: 2px solid #fb7c58;
 }
 .medium {
-  background-color: yellowgreen;
+  width: 5px;
+  height: 20px;
+  background-color: #facb66;
+  border: 2px solid #facb66;
 }
 .strong {
-  background-color: #3dff8e;
+  width: 5px;
+  height: 20px;
+  background-color: #a4ffae;
+  border: 2px solid #a4ffae;
+}
+/* MAIN STYLES */
+.results {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: serif;
+  color: #e6e5eb;
+}
+.results input {
+  accent-color: #a4ffaf;
+}
+.mainBody {
+  background-color: #24232b;
+  padding: 10px;
+  color: #e6e5eb;
+  font-size: 0.9rem;
+}
+.gen {
+  background-color: #a4ffaf;
+  color: #1a3820;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  width: 100%;
+  padding: 16px 0;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.length {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.length span {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #a4ffaf;
+}
+.range {
+  width: 100%;
+  accent-color: #a4ffaf;
+  color: #e6e5eb;
+}
+.passCell {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #24232b;
+  margin-bottom: 10px;
+}
+.passCell p {
+  padding-left: 10px;
+  color: #e6e5eb;
+}
+.size-6 {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.arrow {
+  width: 15px;
+  height: 20px;
 }

@@ -48,135 +48,165 @@ function App() {
     <div className="app">
       <h1 className="header"> password generator</h1>
 
-      <div>
-        <h5
-          className={
-            (isFinished && !length) || (isFinished && length < 6)
-              ? "wrong"
-              : "collect"
-          }
-        >
-          {!isFinished
-            ? "Character length."
-            : !length
-            ? "Please select length!"
-            : length < 6
-            ? "Length must atleast have 6 digits!"
-            : " Character length."}
-        </h5>
+      <div className="passCell">
+        <p>{isFinished ? password : "codesmann"}</p>
 
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#131218"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="#a4ffaf"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m-6 3.75 3 3m0 0 3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75"
+          />
+        </svg>
+      </div>
+
+      <div className="mainBody">
         <div>
+          <div className="length">
+            <h5
+              className={
+                (isFinished && !length) || (isFinished && length < 6)
+                  ? "wrong"
+                  : "collect"
+              }
+            >
+              {!isFinished
+                ? "Character length."
+                : !length
+                ? "Please select length!"
+                : length < 6
+                ? "Length must atleast have 6 digits!"
+                : " Character length."}
+            </h5>
+
+            <span>{length}</span>
+          </div>
           <input
+            className="range"
             type="range"
             min="0"
             max="15"
             value={length}
             onChange={(e) => setLength(e.target.value)}
           />
-          <span>{length}</span>
         </div>
-      </div>
-      <div>
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button>copy</button>
-      </div>
-      <div>
-        <h1 className="results">
+        <p className="results">
           <input
             type="checkbox"
             value={lowerCaseAdded}
             onChange={() => setLowerCaseAdded(true)}
           />
-          abcd
-        </h1>
-        <h1 className="results">
+          <span>Include lowercase letters</span>
+        </p>
+        <p className="results">
           <input
             type="checkbox"
             value={upperCaseAdded}
             onChange={() => setUpperCasAdded(true)}
           />
-          ABCI
-        </h1>
-        <h1 className="results">
+          <span>Include uppercase letters</span>
+        </p>
+        <p className="results">
           <input
             type="checkbox"
             value={numAdded}
             onChange={() => setnumAdded(true)}
           />
-          0123
-        </h1>
-        <h1 className="results">
+          <span>Include numbers</span>
+        </p>
+        <p className="results">
           <input
             type="checkbox"
             value={symbolsAdded}
             onChange={() => setSymbolsAdded(true)}
           />
-          $#&!
-        </h1>
-      </div>
-      <div className="strength">
-        <p>strength</p>
-        <p>
-          {length <= 6
-            ? "too weak"
-            : length <= 8
-            ? "weak"
-            : length <= 12
-            ? "medium"
-            : length > 12
-            ? "strong"
-            : ""}
+          <span>Include symbols</span>
         </p>
-        <p className="barMain">
-          <span
-            className={
-              length < 6
-                ? ""
-                : length <= 6
-                ? "tooWeak"
+
+        <div className="strength">
+          <p>STRENGTH</p>
+          <div>
+            <p>
+              {length <= 6
+                ? "TOO WEAK"
                 : length <= 8
-                ? "weak"
+                ? "WEAK"
                 : length <= 12
-                ? "medium"
+                ? "MEDIUM"
                 : length > 12
-                ? "strong"
-                : ""
-            }
-          ></span>
-          <span
-            className={
-              length > 7
-                ? length <= 8
-                  ? "weak"
-                  : length <= 12
-                  ? "medium"
-                  : length > 12
-                  ? "strong"
-                  : ""
-                : ""
-            }
-          ></span>
-          <span
-            className={
-              length > 8
-                ? length <= 12
-                  ? "medium"
-                  : length > 12
-                  ? "strong"
-                  : ""
-                : ""
-            }
-          ></span>
-          <span className={length > 12 ? "strong" : ""}></span>
-        </p>
-      </div>
-      <div>
-        <button onClick={() => setIsFinished((p) => !p)}>generate</button>
-        <button onClick={resetPassword}>reset</button>
+                ? "STRONG"
+                : ""}
+            </p>
+            <p className="barMain">
+              <span
+                className={
+                  length < 6
+                    ? "empty"
+                    : length <= 6
+                    ? "tooWeak"
+                    : length <= 8
+                    ? "weak"
+                    : length <= 12
+                    ? "medium"
+                    : length > 12
+                    ? "strong"
+                    : ""
+                }
+              ></span>
+              <span
+                className={
+                  length > 7
+                    ? length <= 8
+                      ? "weak"
+                      : length <= 12
+                      ? "medium"
+                      : length > 12
+                      ? "strong"
+                      : ""
+                    : "empty"
+                }
+              ></span>
+              <span
+                className={
+                  length > 8
+                    ? length <= 12
+                      ? "medium"
+                      : length > 12
+                      ? "strong"
+                      : ""
+                    : "empty"
+                }
+              ></span>
+              <span className={length > 12 ? "strong" : "empty"}></span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <button className="gen" onClick={() => setIsFinished((p) => !p)}>
+            generate
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="arrow"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
