@@ -206,6 +206,9 @@ function App() {
               />
             </svg>
           </button>
+          <p className="msg">
+            {password.length >= 6 ? "Double click to regenerate." : ""}
+          </p>
         </div>
       </div>
     </div>

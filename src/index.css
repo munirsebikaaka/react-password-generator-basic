@@ -88,6 +88,13 @@ body {
   padding: 10px;
   color: #e6e5eb;
   font-size: 0.9rem;
+  position: relative;
+}
+.msg {
+  position: absolute;
+  top: 59%;
+  left: 40%;
+  color: #fb7c58;
 }
 .gen {
   background-color: #a4ffaf;
