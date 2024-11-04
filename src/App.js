@@ -34,7 +34,8 @@ function App() {
   };
   generatePassword();
 
-  const resetPassword = () => {
+  const copyPassword = () => {
+    navigator.clipboard.writeText(password);
     setPassword("");
     setLowerCaseAdded(false);
     setUpperCasAdded(false);
@@ -43,7 +44,6 @@ function App() {
     setIsFinished(false);
     setLength(0);
   };
-
   return (
     <div className="app">
       <h1 className="header"> password generator</h1>
@@ -58,6 +58,8 @@ function App() {
           strokeWidth={1.5}
           stroke="#a4ffaf"
           className="size-6"
+          role="button"
+          onClick={copyPassword}
         >
           <path
             strokeLinecap="round"
