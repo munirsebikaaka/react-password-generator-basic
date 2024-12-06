@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FaRegCopy } from "react-icons/fa";
+import { IoArrowForward } from "react-icons/io5";
 
 function App() {
   let [password, setPassword] = useState("");
@@ -73,12 +75,31 @@ function App() {
       <h1 className="header"> password generator</h1>
 
       <div className="passCell">
-        <p>{password}</p>
-        <button onClick={copyPassword}>copy</button>
+        <p>{allSelected ? password : "Password"}</p>
+        <FaRegCopy onClick={copyPassword} className="icon" />
       </div>
 
       <div className="mainBody">
         <div>
+          <div className="length">
+            <h5
+              className={
+                (allSelected && !length) || (allSelected && length < 6)
+                  ? "wrong"
+                  : "collect"
+              }
+            >
+              {!allSelected
+                ? "Character length."
+                : !length
+                ? "Please select length!"
+                : length < 6
+                ? "Length must atleast have 6 digits!"
+                : " Character length."}
+            </h5>
+
+            <span>{length}</span>
+          </div>
           <input
             className="range"
             type="range"
@@ -129,23 +150,67 @@ function App() {
           <span>Include symbols</span>
         </p>
 
+        <div className="strength">
+          <p className="str">STRENGTH</p>
+          <div>
+            <p className="weight">
+              {length <= 6
+                ? "TOO WEAK"
+                : length <= 8
+                ? "WEAK"
+                : length <= 12
+                ? "MEDIUM"
+                : length > 12
+                ? "STRONG"
+                : ""}
+            </p>
+            <p className="barMain">
+              <span
+                className={
+                  length < 6
+                    ? "empty"
+                    : length <= 6
+                    ? "tooWeak"
+                    : length <= 8
+                    ? "weak"
+                    : length <= 12
+                    ? "medium"
+                    : length > 12
+                    ? "strong"
+                    : ""
+                }
+              ></span>
+              <span
+                className={
+                  length > 7
+                    ? length <= 8
+                      ? "weak"
+                      : length <= 12
+                      ? "medium"
+                      : length > 12
+                      ? "strong"
+                      : ""
+                    : "empty"
+                }
+              ></span>
+              <span
+                className={
+                  length > 8
+                    ? length <= 12
+                      ? "medium"
+                      : length > 12
+                      ? "strong"
+                      : ""
+                    : "empty"
+                }
+              ></span>
+              <span className={length > 12 ? "strong" : "empty"}></span>
+            </p>
+          </div>
+        </div>
         <div>
           <button onClick={() => setAllSelected(true)} className="gen">
-            generate
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="arrow"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-              />
-            </svg>
+            generate <IoArrowForward />
           </button>
         </div>
       </div>

@@ -2,15 +2,17 @@ body {
   background-color: #131218;
 }
 .wrong {
-  color: red;
+  color: #ff0000;
   margin-bottom: -1px;
 }
 .header {
   color: #807e8c;
   text-transform: capitalize;
-  font-size: 1.1rem;
   text-align: center;
-  font-family: serif;
+  font-family: JetBrains Mono;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 31.68px;
 }
 .collect {
   margin-bottom: -1px;
@@ -36,8 +38,8 @@ body {
   gap: 10px;
 }
 .app {
-  width: 280px;
-  margin: 30px auto;
+  max-width: 400px;
+  margin: 80px auto;
 }
 
 .empty {
@@ -83,6 +85,13 @@ body {
 .results input {
   accent-color: #a4ffaf;
 }
+
+.results span {
+  font-family: JetBrains Mono;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23.76px;
+}
 .mainBody {
   background-color: #24232b;
   padding: 10px;
@@ -102,7 +111,6 @@ body {
   cursor: pointer;
   border: none;
   text-transform: uppercase;
-  font-weight: 600;
   width: 100%;
   padding: 16px 0;
   margin-top: 10px;
@@ -110,16 +118,37 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  transition: all 0.5s;
+  font-family: JetBrains Mono;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23.76px;
+}
+
+.gen:hover {
+  background-color: inherit;
+  color: #a4ffaf;
+  border: 1px solid #a4ffaf;
 }
 .length {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
+}
+.length h5 {
+  font-family: JetBrains Mono;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23.76px;
 }
 .length span {
-  margin-top: 20px;
-  font-size: 1.2rem;
+  margin-top: 22px;
   color: #a4ffaf;
+  font-family: JetBrains Mono;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 42.24px;
 }
 .range {
   width: 100%;
@@ -137,6 +166,20 @@ body {
 .passCell p {
   padding-left: 10px;
   color: #e6e5eb;
+  font-family: JetBrains Mono;
+  font-size: 18px;
+  font-weight: 700;
+}
+.icon {
+  width: 24px;
+  height: 24px;
+  color: #a4ffaf;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.icon:hover {
+  color: #807e8c;
 }
 .size-6 {
   width: 30px;
@@ -147,4 +190,17 @@ body {
 .arrow {
   width: 15px;
   height: 20px;
+}
+
+.weight {
+  font-family: JetBrains Mono;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 16.68px;
+}
+.str {
+  font-family: JetBrains Mono;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23.76px;
 }
